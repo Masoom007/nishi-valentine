@@ -64,6 +64,7 @@
       position: absolute;
       bottom: 0;
       right: 0;
+      transform:scale(1) !important;
     }
 
     .final {
@@ -85,18 +86,13 @@
       margin-top: 15px;
       font-size: 22px;
     }
+  .celebration-gif {
+    width: 100%;
+    max-width: 260px;
+    border-radius: 16px;
+    margin-bottom: 15px;
+  }
     
-    @keyframes shake {
-  0% { transform: translate(0); }
-  25% { transform: translate(-5px); }
-  50% { transform: translate(5px); }
-  75% { transform: translate(-5px); }
-  100% { transform: translate(0); }
-}
-
-.shake {
-  animation: shake 0.3s;
-}
   </style>
 </head>
 
@@ -120,10 +116,16 @@
   </div>
 
   <!-- FINAL SCREEN -->
-  <div class="container final" id="final">
-    <div class="heart">❤️</div>
-    <h1>That’s the best decision you ever made!</h1>
-  </div>
+<div class="container final" id="final">
+  <img 
+    src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2loZDUyM3B3NHQzNzRyNGhkam40NTdzNHFxb2V0ZG41dGZ3cTlmdSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l0MYt5jPR6QX5pnqM/giphy.gif" 
+    alt="Celebration"
+    class="celebration-gif"
+  />
+
+  <div class="heart">❤️</div>
+  <h1>That’s the best decision you ever made!</h1>
+</div>
 
   <script>
   const noMessages = [
