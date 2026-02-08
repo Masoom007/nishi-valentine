@@ -127,73 +127,39 @@
   <h1>That’s the best decision you ever made!</h1>
 </div>
 
-  <script>
-  const noMessages = [
-    "No",
-    "Are you sure?",
-    "Nice try 😜",
-    "Haha nope",
-    "Missed me!",
-    "Just say YES ❤️"
-  ];
+    <script>
+    const noTexts = [
+      "No",
+      "Think again!",
+      "Last chance!",
+      "You might regret this!",
+      "Give it another thought!",
+      "This could be a mistake!"
+    ];
 
-  let count = 0;
-  const yes = document.getElementById("yes");
-  const no = document.getElementById("no");
-  const area = document.querySelector(".btn-area");
-  const music = document.getElementById("loveMusic");
+    let clickCount = 0;
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
 
-  function moveNoButton() {
-    count++;
+    noBtn.addEventListener("click", () => {
+      clickCount++;
 
-    // Text change
-    no.textContent = noMessages[count % noMessages.length];
+      const randomX = Math.floor(Math.random() * 200) - 100;
+      const randomY = Math.floor(Math.random() * 80) - 40;
 
-    // Shake animation
-    no.classList.add("shake");
-    setTimeout(() => no.classList.remove("shake"), 300);
+      noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
 
-    // Tiny vibration (mobile)
-    if (navigator.vibrate) {
-      navigator.vibrate(40);
-    }
+      noBtn.innerText = noTexts[clickCount % noTexts.length];
 
-    // Move button randomly
-    const areaRect = area.getBoundingClientRect();
-    const btnRect = no.getBoundingClientRect();
+      // YES button grows 😈
+      const scale = 1 + clickCount * 0.25;
+      yesBtn.style.transform = `scale(${scale})`;
+    });
 
-    const maxX = areaRect.width - btnRect.width;
-    const maxY = areaRect.height - btnRect.height;
-
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
-
-    no.style.left = x + "px";
-    no.style.top = y + "px";
-
-    // YES grows 😈
-    yes.style.transform = `scale(${1 + count * 0.3})`;
-  }
-
-  // Desktop
-  no.addEventListener("mouseover", moveNoButton);
-
-  // Mobile
-  no.addEventListener("touchstart", (e) => {
-    e.preventDefault();
-    moveNoButton();
-  });
-
-  // YES action ❤️
-  yes.addEventListener("click", () => {
-    document.getElementById("question").style.display = "none";
-    document.getElementById("final").style.display = "block";
-
-    // Start romantic music 🎵
-    music.volume = 0.6;
-    music.play();
-  });
-</script>
-
+    yesBtn.addEventListener("click", () => {
+      document.getElementById("mainCard").style.display = "none";
+      document.getElementById("finalCard").style.display = "block";
+    });
+  </script>
 </body>
 </html>
