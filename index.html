@@ -64,7 +64,6 @@
       position: absolute;
       bottom: 0;
       right: 0;
-      transform:scale(1) !important;
     }
 
     .final {
@@ -86,22 +85,15 @@
       margin-top: 15px;
       font-size: 22px;
     }
-  .celebration-gif {
-    width: 80%;
-    max-width: 260px;
-    border-radius: 16px;
-    margin-bottom: 15px;
-  }
-    
+    .celebration-gif {
+  width: 80%;
+  max-width: 260px;
+  border-radius: 16px;
+  margin-bottom: 15px;
+}
   </style>
 </head>
 
-  
-<audio id="loveMusic">
-  <source src="https://cdn.pixabay.com/download/audio/2022/10/30/audio_8bfa1db8c4.mp3" type="audio/mpeg">
-</audio>
-  
-  
 <body>
 
   <!-- QUESTION SCREEN -->
@@ -116,19 +108,18 @@
   </div>
 
   <!-- FINAL SCREEN -->
-<div class="container final" id="final">
-  <img 
-    src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2loZDUyM3B3NHQzNzRyNGhkam40NTdzNHFxb2V0ZG41dGZ3cTlmdSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l0MYt5jPR6QX5pnqM/giphy.gif" 
+  <div class="container final" id="final">
+      <img 
+    src="https://media.giphy.com/media/5GoVLqeAOo6PK/giphy.gif" 
     alt="Celebration"
     class="celebration-gif"
   />
+    <div class="heart">❤️</div>
+    <h1>That’s the best decision you ever made!</h1>
+  </div>
 
-  <div class="heart">❤️</div>
-  <h1>That’s the best decision you ever made!</h1>
-</div>
-
-    <script>
-    const noTexts = [
+  <script>
+    const noMessages = [
       "No",
       "Think again!",
       "Last chance!",
@@ -137,29 +128,30 @@
       "This could be a mistake!"
     ];
 
-    let clickCount = 0;
-    const noBtn = document.getElementById("noBtn");
-    const yesBtn = document.getElementById("yesBtn");
+    let count = 0;
+    const yes = document.getElementById("yes");
+    const no = document.getElementById("no");
 
-    noBtn.addEventListener("click", () => {
-      clickCount++;
+    no.addEventListener("click", () => {
+      count++;
 
-      const randomX = Math.floor(Math.random() * 200) - 100;
-      const randomY = Math.floor(Math.random() * 80) - 40;
+      no.textContent = noMessages[count % noMessages.length];
 
-      noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+      const x = Math.random() * 180 - 90;
+      const y = Math.random() * 60 - 30;
+      no.style.transform = `translate(${x}px, ${y}px)`;
 
-      noBtn.innerText = noTexts[clickCount % noTexts.length];
-
-      // YES button grows 😈
-      const scale = 1 + clickCount * 0.25;
-      yesBtn.style.transform = `scale(${scale})`;
+      // YES keeps growing 😏
+      yes.style.transform = `scale(${1 + count * 0.3})`;
     });
 
-    yesBtn.addEventListener("click", () => {
-      document.getElementById("mainCard").style.display = "none";
-      document.getElementById("finalCard").style.display = "block";
+    yes.addEventListener("click", () => {
+      document.getElementById("question").style.display = "none";
+      document.getElementById("final").style.display = "block";
     });
   </script>
+<audio id="loveMusic">
+  <source src="https://cdn.pixabay.com/download/audio/2022/10/30/audio_8bfa1db8c4.mp3" type="audio/mpeg">
+</audio>
 </body>
 </html>
